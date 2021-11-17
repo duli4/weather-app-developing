@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeatherApp">
         <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.SplashScreen"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
