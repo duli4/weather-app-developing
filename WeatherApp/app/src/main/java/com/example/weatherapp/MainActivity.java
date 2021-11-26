@@ -32,16 +32,16 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-                Log.i("info", "jin lai le");
+                //Log.i("info", "jin lai le");
                 fetchWeatherView.setVisibility(View.GONE);
                 progressBar.setVisibility(View.GONE);
                 Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                 startActivity(intent);
 
-                Fragment newFragment =new  ViewPagerWithCircleIndicatorView();
-                FragmentTransaction transaction =getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.card1,newFragment);
-                transaction.commit();
+//                Fragment newFragment =new  ViewPagerWithCircleIndicatorView();
+//                FragmentTransaction transaction =getSupportFragmentManager().beginTransaction();
+//                transaction.replace(R.id.card1,newFragment);
+//                transaction.commit();
             }
         }, 3000);
     }

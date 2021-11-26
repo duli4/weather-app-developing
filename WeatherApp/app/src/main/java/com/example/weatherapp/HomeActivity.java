@@ -22,6 +22,13 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.LocationCallback;
@@ -34,12 +41,18 @@ import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class HomeActivity extends AppCompatActivity {
 
 //    TabLayout tabLayout;
 //    ViewPager2 Pager2;
 //    FragmentAdapter adapter;
-private LocationRequest locationRequest;
+    private LocationRequest locationRequest;
+    double latitude;
+    double longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,46 +65,45 @@ private LocationRequest locationRequest;
         locationRequest.setFastestInterval(2000);
 
         getCurrentLocation();
-//
-//        Fragment newFragment =new  ViewPagerWithCircleIndicatorView();
-//        FragmentTransaction transaction =getSupportFragmentManager().beginTransaction();
-//        transaction.replace(R.id.card1,newFragment);
-//        transaction.commit();
 
-//        tabLayout = findViewById(R.id.tab_layout);
-//        Pager2 = findViewById(R.id.view_pager2);
-//
-//        FragmentManager fm = getSupportFragmentManager();
-//        adapter = new FragmentAdapter(fm, getLifecycle());
-//        Pager2.setAdapter(adapter);
-//
-//
-//        tabLayout.addTab(tabLayout.newTab().setText("First"));
-//        tabLayout.addTab(tabLayout.newTab().setText("Second"));
-//
-//        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-//            @Override
-//            public void onTabSelected(TabLayout.Tab tab) {
-//                Pager2.setCurrentItem(tab.getPosition());
-//            }
-//
-//            @Override
-//            public void onTabUnselected(TabLayout.Tab tab) {
-//
-//            }
-//
-//            @Override
-//            public void onTabReselected(TabLayout.Tab tab) {
-//
-//            }
-//        });
-//
-//        Pager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-//            @Override
-//            public void onPageSelected(int position) {
-//                tabLayout.selectTab(tabLayout.getTabAt(position));
-//            }
-//        });
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        String url = "https://api.tomorrow.io/v4/timelines?location="
+                + Double.toString(latitude) + ','
+                + Double.toString(longitude) +
+                "&fields=precipitationIntensity,precipitationType,windSpeed,windGust,windDirection,temperatureMax,temperatureMin,temperatureApparent,cloudCover,cloudBase,cloudCeiling,weatherCode,temperature,humidity,pressureSurfaceLevel,visibility,cloudCover,uvIndex,precipitationProbability,sunriseTime,sunsetTime"
+                + "&timesteps=1d&units=imperial&timezone=America/Los_Angeles&apikey=C5JMDFsiGmycb43l7QsGc2nV15uiENPi";
+
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONObject data = response.getJSONObject("data");
+                            JSONArray timelines = data.getJSONArray("timelines");
+                            JSONObject element = (JSONObject) timelines.get(0);
+                            JSONArray intervals = element.getJSONArray("intervals");
+
+                            System.out.println(intervals.length());
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                });
+
+        // Add the request to the RequestQueue.
+        queue.add(jsonObjectRequest);
 
     }
 
@@ -170,8 +182,8 @@ private LocationRequest locationRequest;
                                             .removeLocationUpdates(this);
 
                                     if (locationResult != null && locationResult.getLocations().size() >0){
-                                        double latitude = locationResult.getLastLocation().getLatitude();
-                                        double longitude = locationResult.getLastLocation().getLongitude();
+                                        latitude = locationResult.getLastLocation().getLatitude();
+                                        longitude = locationResult.getLastLocation().getLongitude();
                                         System.out.println(latitude +  " " + longitude); // get data here
                                     }
                                 }
@@ -239,5 +251,6 @@ private LocationRequest locationRequest;
         return isEnabled;
 
     }
+
 
 }
