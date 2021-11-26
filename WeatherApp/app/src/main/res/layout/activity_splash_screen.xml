@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <ImageView
+        android:layout_width="68dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:src="@drawable/weather_partly_snowy_rainy" />
+
+    <ImageView
+        android:layout_width="365dp"
+        android:layout_height="43dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="13dp"
+        android:gravity="bottom"
+        android:src="@drawable/powered_by_tomorrow" />
+
+
+</RelativeLayout>

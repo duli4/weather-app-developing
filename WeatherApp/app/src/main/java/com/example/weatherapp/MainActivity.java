@@ -1,6 +1,8 @@
 package com.example.weatherapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,16 +26,22 @@ public class MainActivity extends AppCompatActivity {
         TextView fetchWeatherView = (TextView) findViewById(R.id.fetchWeatherText);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
+
         // Display loading page for 3 sec
         new Handler().postDelayed(new Runnable() {
 
             @Override
             public void run() {
-                //Log.i("info", "jin lai le");
+                Log.i("info", "jin lai le");
                 fetchWeatherView.setVisibility(View.GONE);
                 progressBar.setVisibility(View.GONE);
                 Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                 startActivity(intent);
+
+                Fragment newFragment =new  ViewPagerWithCircleIndicatorView();
+                FragmentTransaction transaction =getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.card1,newFragment);
+                transaction.commit();
             }
         }, 3000);
     }

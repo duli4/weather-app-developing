@@ -19,6 +19,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -50,6 +52,11 @@ private LocationRequest locationRequest;
         locationRequest.setFastestInterval(2000);
 
         getCurrentLocation();
+//
+//        Fragment newFragment =new  ViewPagerWithCircleIndicatorView();
+//        FragmentTransaction transaction =getSupportFragmentManager().beginTransaction();
+//        transaction.replace(R.id.card1,newFragment);
+//        transaction.commit();
 
 //        tabLayout = findViewById(R.id.tab_layout);
 //        Pager2 = findViewById(R.id.view_pager2);
