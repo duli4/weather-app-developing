@@ -77,7 +77,7 @@ public class CircleIndicatorView extends View {
         this.invalidate();
     }
 
-    private int circleSelectedColor = Color.RED;
+    private int circleSelectedColor = Color.WHITE;
 
     public void setCircleSelectedColor(int color) {
         circleSelectedColor = color;
@@ -87,7 +87,7 @@ public class CircleIndicatorView extends View {
         return circleSelectedColor;
     }
 
-    private int circleUnSelectedColor = Color.LTGRAY;
+    private int circleUnSelectedColor = Color.GRAY;
 
     public void setCircleUnSelectedColor(int color) {
         circleUnSelectedColor = color;

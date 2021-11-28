@@ -85,7 +85,7 @@ public class ViewPagerWithCircleIndicatorView extends Fragment {
                         mCircleIndicatorView.setCircleSelectedPosition(mViewPager
                                 .getCurrentItem());
                         mCircleIndicatorView.setSelectedCircleRadius(10);
-                        mCircleIndicatorView.setCircleUnSelectedColor(Color.BLUE);
+                        mCircleIndicatorView.setCircleUnSelectedColor(Color.GRAY);
                         mCircleIndicatorView.drawCircleView();
 //
 //                        TestFragment tf = (TestFragment) mArrayList.get(mViewPager.getCurrentItem()).get(FRAGMENT);
@@ -211,7 +211,7 @@ public class ViewPagerWithCircleIndicatorView extends Fragment {
             for (int i = 0; i < 500; i++)
                 str = str + i + "--";
 
-            tv.setTextColor(Color.LTGRAY);
+            tv.setTextColor(Color.GRAY);
             tv.setText(str);
 
             return tv;

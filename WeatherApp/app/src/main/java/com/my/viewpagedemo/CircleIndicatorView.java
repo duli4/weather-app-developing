@@ -78,7 +78,7 @@ public class CircleIndicatorView extends View {
         this.invalidate();
     }
 
-    private int circleSelectedColor = Color.RED;
+    private int circleSelectedColor = Color.WHITE;
 
     public void setCircleSelectedColor(int color) {
         circleSelectedColor = color;
@@ -88,7 +88,7 @@ public class CircleIndicatorView extends View {
         return circleSelectedColor;
     }
 
-    private int circleUnSelectedColor = Color.LTGRAY;
+    private int circleUnSelectedColor = Color.GRAY;
 
     public void setCircleUnSelectedColor(int color) {
         circleUnSelectedColor = color;
@@ -113,7 +113,7 @@ public class CircleIndicatorView extends View {
         int translate_pos = getCircleCount() - getCircleSelectedPosition() - 1;
 
         //如果居中绘制则使用start_x，但需要依次递加x坐标轴位置值。
-        int start_x = (w + (getCirlceGap() * (getCircleCount() - 1))) / 2;
+        int start_x = (w+30 + (getCirlceGap() * (getCircleCount() - 1))) / 2;
 //        int start_x = w / 2;
         System.out.println("start x value = " + start_x + "x: = "+ w + "couting = " + getCircleCount());
         for (int i = 0; i < getCircleCount(); i++) {
