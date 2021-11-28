@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 public class CircleIndicatorView extends View {
@@ -13,7 +14,7 @@ public class CircleIndicatorView extends View {
         super(context, attrs);
     }
 
-    private int gap = 20;//各个横向排列的小球间距
+    private int gap = 50;//各个横向排列的小球间距
 
     public void setCirlceGap(int gap) {
         this.gap = padding;
@@ -23,7 +24,7 @@ public class CircleIndicatorView extends View {
         return gap;
     }
 
-    private int padding = 20;
+    private int padding = 10;
 
     public void setPadding(int padding) {
         this.padding = padding;
@@ -33,7 +34,7 @@ public class CircleIndicatorView extends View {
         return padding;
     }
 
-    private int circle_normal_radius = 5; //普通小球半径
+    private int circle_normal_radius = 10; //普通小球半径
 
     public void setNormalCircleRadius(int radius) {
         this.circle_normal_radius = radius;
@@ -43,7 +44,7 @@ public class CircleIndicatorView extends View {
         return circle_normal_radius;
     }
 
-    private int circle_selected_radius = 5; //被选择的小球半径
+    private int circle_selected_radius = 15; //被选择的小球半径
 
     public void setSelectedCircleRadius(int radius) {
         this.circle_selected_radius = radius;
@@ -112,11 +113,13 @@ public class CircleIndicatorView extends View {
         int translate_pos = getCircleCount() - getCircleSelectedPosition() - 1;
 
         //如果居中绘制则使用start_x，但需要依次递加x坐标轴位置值。
-        int start_x = (w - (getCirlceGap() * (getCircleCount() - 1))) / 2;
-
+        int start_x = (w + (getCirlceGap() * (getCircleCount() - 1))) / 2;
+//        int start_x = w / 2;
+        System.out.println("start x value = " + start_x + "x: = "+ w + "couting = " + getCircleCount());
         for (int i = 0; i < getCircleCount(); i++) {
             int r = getNormalCircleRadius();
-            start_x=start_x+15;
+            System.out.println("translate pos: = " + translate_pos);
+            start_x= start_x - 50;
             if (i == translate_pos) {
                 r = getSelectedCircleRadius();
                 p.setColor(getCircleSelectedColor());

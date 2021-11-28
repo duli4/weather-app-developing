@@ -20,6 +20,10 @@
 <!--        android:layout_below="@+id/circleIndicatorView" />-->
 
 <!--card1-->
+    <FrameLayout
+    android:id="@+id/fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <androidx.cardview.widget.CardView
         android:id="@+id/card1"
         android:layout_width="match_parent"
@@ -474,7 +478,7 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-
+    </FrameLayout>
 <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
 <!--        android:id="@+id/btn_add"-->
 <!--        android:layout_width="wrap_content"-->

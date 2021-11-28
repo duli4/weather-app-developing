@@ -57,7 +57,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_fragment);
 
         locationRequest = LocationRequest.create();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
@@ -65,6 +65,11 @@ public class HomeActivity extends AppCompatActivity {
         locationRequest.setFastestInterval(2000);
 
         getCurrentLocation();
+
+        Fragment newFragment =new  ViewPagerWithCircleIndicatorView();
+        FragmentTransaction transaction =getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment,newFragment);
+        transaction.commit();
 
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);

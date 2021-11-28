@@ -47,7 +47,7 @@ public class ViewPagerWithCircleIndicatorView extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View mView = inflater.inflate(R.layout.activity_home, null);
+        View mView = inflater.inflate(R.layout.viewpager_fragment, null);
 
         mViewPager = (ViewPager) mView.findViewById(R.id.viewpager);
         btn_add = mView.findViewById(R.id.btn_add);
@@ -84,7 +84,7 @@ public class ViewPagerWithCircleIndicatorView extends Fragment {
                                 .getCount());
                         mCircleIndicatorView.setCircleSelectedPosition(mViewPager
                                 .getCurrentItem());
-                        mCircleIndicatorView.setSelectedCircleRadius(7);
+                        mCircleIndicatorView.setSelectedCircleRadius(10);
                         mCircleIndicatorView.setCircleUnSelectedColor(Color.BLUE);
                         mCircleIndicatorView.drawCircleView();
 //
