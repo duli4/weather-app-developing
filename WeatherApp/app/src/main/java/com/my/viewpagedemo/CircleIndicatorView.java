@@ -34,7 +34,7 @@ public class CircleIndicatorView extends View {
         return padding;
     }
 
-    private int circle_normal_radius = 10; //普通小球半径
+    private int circle_normal_radius = 15; //普通小球半径
 
     public void setNormalCircleRadius(int radius) {
         this.circle_normal_radius = radius;
