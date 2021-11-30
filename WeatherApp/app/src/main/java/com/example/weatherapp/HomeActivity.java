@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -47,24 +49,13 @@ import org.json.JSONObject;
 
 public class HomeActivity extends AppCompatActivity {
 
-//    TabLayout tabLayout;
-//    ViewPager2 Pager2;
-//    FragmentAdapter adapter;
-    private LocationRequest locationRequest;
-    double latitude;
-    double longitude;
+    String city, region, latitude, longitude;
+    String loc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment);
-
-        locationRequest = LocationRequest.create();
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        locationRequest.setInterval(5000);
-        locationRequest.setFastestInterval(2000);
-
-        getCurrentLocation();
 
         Fragment newFragment =new  ViewPagerWithCircleIndicatorView();
         FragmentTransaction transaction =getSupportFragmentManager().beginTransaction();
@@ -74,25 +65,94 @@ public class HomeActivity extends AppCompatActivity {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        String url = "https://api.tomorrow.io/v4/timelines?location="
-                + Double.toString(latitude) + ','
-                + Double.toString(longitude) +
-                "&fields=precipitationIntensity,precipitationType,windSpeed,windGust,windDirection,temperatureMax,temperatureMin,temperatureApparent,cloudCover,cloudBase,cloudCeiling,weatherCode,temperature,humidity,pressureSurfaceLevel,visibility,cloudCover,uvIndex,precipitationProbability,sunriseTime,sunsetTime"
-                + "&timesteps=1d&units=imperial&timezone=America/Los_Angeles&apikey=C5JMDFsiGmycb43l7QsGc2nV15uiENPi";
 
+        String geoURL = "https://ipinfo.io/?token=20ef1690f3db86";
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest geoJsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, geoURL, null, new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            JSONObject data = response.getJSONObject("data");
-                            JSONArray timelines = data.getJSONArray("timelines");
-                            JSONObject element = (JSONObject) timelines.get(0);
-                            JSONArray intervals = element.getJSONArray("intervals");
+                            city = (String) response.get("city");
+                            region = (String) response.get("region");
+                            String cityState = city+ ", "+ region;
+                            TextView location = (TextView) findViewById(R.id.location);
+                            location.setText(cityState);
 
-                            System.out.println(intervals.length());
+                            loc = (String) response.get("loc");
+                            latitude = loc.split(",",0)[0];
+                            longitude = loc.split(",",0)[1];
+
+                            String tmrURL = "https://api.tomorrow.io/v4/timelines?location="
+                                    + latitude + ','
+                                    + longitude +
+                                    "&fields=precipitationIntensity,precipitationType,windSpeed,windGust,windDirection,temperatureMax,temperatureMin,temperatureApparent,cloudCover,cloudBase,cloudCeiling,weatherCode,temperature,humidity,pressureSurfaceLevel,visibility,cloudCover,uvIndex,precipitationProbability,sunriseTime,sunsetTime"
+                                    + "&timesteps=1d&units=imperial&timezone=America/Los_Angeles&apikey=C5JMDFsiGmycb43l7QsGc2nV15uiENPi";
+
+                            JsonObjectRequest tmrJsonObjectRequest = new JsonObjectRequest
+                                    (Request.Method.GET, tmrURL, null, new Response.Listener<JSONObject>() {
+
+                                        @Override
+                                        public void onResponse(JSONObject response) {
+                                            try {
+//                                                System.out.println(tmrURL);
+                                                ImageView weatherIcon = (ImageView) findViewById(R.id.weatherIcon);
+                                                TextView temperature = (TextView) findViewById(R.id.temperature);
+                                                TextView weatherType = (TextView) findViewById(R.id.weatherType);
+                                                TextView humidtyData = (TextView) findViewById(R.id.humidtyData);
+                                                TextView windSpeedData = (TextView) findViewById(R.id.windSpeedData);
+                                                TextView visibilityData = (TextView) findViewById(R.id.visibilityData);
+                                                TextView pressureData = (TextView) findViewById(R.id.pressureData);
+                                                TextView date1 = (TextView) findViewById(R.id.date1);
+                                                ImageView weatherRep1 = (ImageView) findViewById(R.id.weatherRep1);
+                                                TextView minTemperature1 = (TextView) findViewById(R.id.minTemperature1);
+                                                TextView maxTemperature1 = (TextView) findViewById(R.id.maxTemperature1);
+                                                TextView date2 = (TextView) findViewById(R.id.date2);
+                                                ImageView weatherRep2 = (ImageView) findViewById(R.id.weatherRep2);
+                                                TextView minTemperature2 = (TextView) findViewById(R.id.minTemperature2);
+                                                TextView maxTemperature2 = (TextView) findViewById(R.id.maxTemperature2);
+                                                TextView date3 = (TextView) findViewById(R.id.date3);
+                                                ImageView weatherRep3 = (ImageView) findViewById(R.id.weatherRep3);
+                                                TextView minTemperature3 = (TextView) findViewById(R.id.minTemperature3);
+                                                TextView maxTemperature3 = (TextView) findViewById(R.id.maxTemperature3);
+                                                TextView date4 = (TextView) findViewById(R.id.date4);
+                                                ImageView weatherRep4 = (ImageView) findViewById(R.id.weatherRep4);
+                                                TextView minTemperature4 = (TextView) findViewById(R.id.minTemperature4);
+                                                TextView maxTemperature4 = (TextView) findViewById(R.id.maxTemperature4);
+                                                TextView date5 = (TextView) findViewById(R.id.date5);
+                                                ImageView weatherRep5 = (ImageView) findViewById(R.id.weatherRep5);
+                                                TextView minTemperature5 = (TextView) findViewById(R.id.minTemperature5);
+                                                TextView maxTemperature5 = (TextView) findViewById(R.id.maxTemperature5);
+                                                TextView date6 = (TextView) findViewById(R.id.date6);
+                                                ImageView weatherRep6 = (ImageView) findViewById(R.id.weatherRep6);
+                                                TextView minTemperature6 = (TextView) findViewById(R.id.minTemperature6);
+                                                TextView maxTemperature6 = (TextView) findViewById(R.id.maxTemperature6);
+
+                                                JSONObject data = response.getJSONObject("data");
+                                                JSONArray timelines = data.getJSONArray("timelines");
+                                                JSONObject element = (JSONObject) timelines.get(0);
+                                                JSONArray intervals = element.getJSONArray("intervals");
+                                                JSONObject oneDay = (JSONObject) intervals.get(0);
+                                                JSONObject values = oneDay.getJSONObject("values");
+                                                //String haha = Integer.toString((int) Math.round(values.getDouble("temperature")));
+                                                temperature.setText(Integer.toString((int) Math.round(values.getDouble("temperature")))+" \u2109");
+
+
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+
+                                        }
+                                    }, new Response.ErrorListener() {
+
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            error.printStackTrace();
+                                        }
+                                    });
+
+                            queue.add(tmrJsonObjectRequest);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -108,7 +168,7 @@ public class HomeActivity extends AppCompatActivity {
                 });
 
         // Add the request to the RequestQueue.
-        queue.add(jsonObjectRequest);
+        queue.add(geoJsonObjectRequest);
 
     }
 
@@ -136,126 +196,5 @@ public class HomeActivity extends AppCompatActivity {
 
         return super.onCreateOptionsMenu(menu);
     }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (requestCode == 1){
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
-
-                if (isGPSEnabled()) {
-
-                    getCurrentLocation();
-
-                }else {
-
-                    turnOnGPS();
-
-                }
-            }
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 2) {
-            if (resultCode == Activity.RESULT_OK) {
-
-                getCurrentLocation();
-
-            }
-        }
-    }
-
-    private void getCurrentLocation() {
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ActivityCompat.checkSelfPermission(HomeActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-
-                if (isGPSEnabled()) {
-
-                    LocationServices.getFusedLocationProviderClient(HomeActivity.this)
-                            .requestLocationUpdates(locationRequest, new LocationCallback() {
-                                @Override
-                                public void onLocationResult(@NonNull LocationResult locationResult) {
-                                    super.onLocationResult(locationResult);
-
-                                    LocationServices.getFusedLocationProviderClient(HomeActivity.this)
-                                            .removeLocationUpdates(this);
-
-                                    if (locationResult != null && locationResult.getLocations().size() >0){
-                                        latitude = locationResult.getLastLocation().getLatitude();
-                                        longitude = locationResult.getLastLocation().getLongitude();
-                                        System.out.println(latitude +  " " + longitude); // get data here
-                                    }
-                                }
-                            }, Looper.getMainLooper());
-
-                } else {
-                    turnOnGPS();
-                }
-
-            } else {
-                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-            }
-        }
-    }
-
-    private void turnOnGPS() {
-
-        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
-                .addLocationRequest(locationRequest);
-        builder.setAlwaysShow(true);
-
-        Task<LocationSettingsResponse> result = LocationServices.getSettingsClient(getApplicationContext())
-                .checkLocationSettings(builder.build());
-
-        result.addOnCompleteListener(new OnCompleteListener<LocationSettingsResponse>() {
-            @Override
-            public void onComplete(@NonNull Task<LocationSettingsResponse> task) {
-
-                try {
-                    LocationSettingsResponse response = task.getResult(ApiException.class);
-                    Toast.makeText(HomeActivity.this, "GPS is already tured on", Toast.LENGTH_SHORT).show();
-
-                } catch (ApiException e) {
-
-                    switch (e.getStatusCode()) {
-                        case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-
-                            try {
-                                ResolvableApiException resolvableApiException = (ResolvableApiException) e;
-                                resolvableApiException.startResolutionForResult(HomeActivity.this, 2);
-                            } catch (IntentSender.SendIntentException ex) {
-                                ex.printStackTrace();
-                            }
-                            break;
-
-                        case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-                            //Device does not have location
-                            break;
-                    }
-                }
-            }
-        });
-
-    }
-
-    private boolean isGPSEnabled() {
-        LocationManager locationManager = null;
-        boolean isEnabled = false;
-
-        if (locationManager == null) {
-            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        }
-
-        isEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        return isEnabled;
-
-    }
-
 
 }
