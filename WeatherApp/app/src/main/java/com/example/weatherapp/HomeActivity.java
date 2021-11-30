@@ -113,7 +113,9 @@ public class HomeActivity extends AppCompatActivity {
                                                 JSONObject values = today.getJSONObject("values");
 
                                                 weatherType.setText(getWeatherInfo(values.getString("weatherCode")));
-                                                temperature.setText(Integer.toString((int) Math.round(values.getDouble("temperature")))+" \u2109");
+//                                                System.out.println("change weather type");
+                                                temperature.setText(Integer.toString((int) Math.round(values.getDouble("temperature"))) + " \u2109");
+//                                                System.out.println("change temperature degree");
 //                                                System.out.println(values.getString("weatherCode"));
 
                                                 humidtyData.setText(values.getString("humidity") + "%");
