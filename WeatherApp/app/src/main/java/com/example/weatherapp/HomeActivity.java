@@ -65,7 +65,6 @@ public class HomeActivity extends AppCompatActivity {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
 
-
         String geoURL = "https://ipinfo.io/?token=20ef1690f3db86";
 
         JsonObjectRequest geoJsonObjectRequest = new JsonObjectRequest
@@ -113,11 +112,7 @@ public class HomeActivity extends AppCompatActivity {
                                                 JSONObject values = today.getJSONObject("values");
 
                                                 weatherType.setText(getWeatherInfo(values.getString("weatherCode")));
-//                                                System.out.println("change weather type");
                                                 temperature.setText(Integer.toString((int) Math.round(values.getDouble("temperature"))) + " \u2109");
-//                                                System.out.println("change temperature degree");
-//                                                System.out.println(values.getString("weatherCode"));
-
                                                 humidtyData.setText(values.getString("humidity") + "%");
                                                 windSpeedData.setText(values.getString("windSpeed") + "mph");
                                                 visibilityData.setText(values.getString("visibility") + "mi");
@@ -237,75 +232,75 @@ public class HomeActivity extends AppCompatActivity {
         {
             return "Cloudy";
         }
-        if(code_number == "2000")
+        if(code_number.equals("2000"))
         {
             return "Fog";
         }
-        if(code_number == "2100")
+        if(code_number.equals("2100"))
         {
             return "Light Fog";
         }
-        if(code_number == "8000")
+        if(code_number.equals("8000"))
         {
             return "   Thunderstorm";
         }
-        if(code_number == "5001")
+        if(code_number.equals("5001"))
         {
             return "Flurries";
         }
-        if(code_number == "5100")
+        if(code_number.equals("5100"))
         {
             return "Light Snow";
         }
-        if(code_number == "5000")
+        if(code_number.equals("5000"))
         {
             return "Snow";
         }
-        if(code_number == "5101")
+        if(code_number.equals("5101"))
         {
             return "Heavy Snow";
         }
-        if(code_number == "7102")
+        if(code_number.equals("7102"))
         {
             return "Light Ice Pellets";
         }
-        if(code_number == "7000")
+        if(code_number.equals("7000"))
         {
             return "Ice Pellets";
         }
-        if(code_number == "7101")
+        if(code_number.equals("7101"))
         {
             return "Heavy Ice Pellets";
         }
-        if(code_number == "4000")
+        if(code_number.equals("4000"))
         {
             return "Drizzle";
         }
-        if(code_number == "6000")
+        if(code_number.equals("6000"))
         {
             return "Freezing Drizzle";
         }
-        if(code_number == "6200")
+        if(code_number.equals("6200"))
         {
             return "Light Freezing Rain";
         }
-        if(code_number == "6001")
+        if(code_number.equals("6001"))
         {
             return "Freezing Rain";
         }
-        if(code_number == "6201")
+        if(code_number.equals("6201"))
         {
             return "Heavy Freezing Rain";
         }
-        if(code_number == "4200")
+        if(code_number.equals("4200"))
         {
             return "Light Rain";
         }
-        if(code_number == "4001")
+        if(code_number.equals("4001"))
         {
             return "Rain";
         }
-        if(code_number == "4201")
+        if(code_number.equals("4201"))
         {
             return "Heavy Rain";
         }
@@ -324,6 +319,10 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 // Searchable Activity
+                Intent intent = new Intent(HomeActivity.this,Searchable.class);
+                intent.putExtra("cityAndState", query);
+                System.out.println("At Home: " + query);
+                startActivity(intent);
                 return false;
             }
 

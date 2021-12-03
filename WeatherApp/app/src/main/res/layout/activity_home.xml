@@ -56,31 +56,34 @@
                     android:translationX="-50dp"
                     app:srcCompat="@drawable/ic_mostly_clear_day" />
 
-                <TextView
-                    android:id="@+id/temperature"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
+                <LinearLayout
+                    android:layout_width="298dp"
+                    android:layout_height="124dp"
+                    android:gravity="center"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginTop="22dp"
-                    android:layout_marginEnd="118dp"
-                    android:gravity="center"
-                    android:scaleX="1.5"
-                    android:scaleY="1.5"
-                    android:text="56 \u2109"
-                    android:textColor="@color/white" />
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/weatherType"
-                    android:layout_width="wrap_content"
-                    android:layout_height="29dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="91dp"
-                    android:layout_marginEnd="118dp"
-                    android:gravity="center"
-                    android:text="Mostly Cloudy"
-                    android:textColor="#9B9B9B" />
+                    <TextView
+                        android:id="@+id/temperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:gravity="center"
+                        android:scaleX="1.5"
+                        android:scaleY="1.5"
+                        android:text="56 \u2109"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/weatherType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="29dp"
+                        android:gravity="center"
+                        android:text="Mostly Cloudy"
+                        android:textColor="#9B9B9B" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/location"
