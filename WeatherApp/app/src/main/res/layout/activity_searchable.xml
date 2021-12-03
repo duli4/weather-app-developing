@@ -25,7 +25,8 @@
             android:layout_marginBottom="10dp"
             android:minHeight="200dp"
             app:cardBackgroundColor="#272727"
-            app:cardCornerRadius="10dp">
+            app:cardCornerRadius="10dp"
+            android:onClick="turnOnDetails">
 
             <RelativeLayout
                 android:layout_width="match_parent"

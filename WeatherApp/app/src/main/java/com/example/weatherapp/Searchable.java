@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -304,4 +305,10 @@ public class Searchable extends AppCompatActivity {
         return "null";
     }
 
+    public void turnOnDetails(View view) {
+
+        Intent detailsIntent = new Intent(Searchable.this, Details.class);
+        startActivity(detailsIntent);
+
+    }
 }

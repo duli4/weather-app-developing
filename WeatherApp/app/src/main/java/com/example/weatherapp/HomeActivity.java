@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -51,6 +53,7 @@ public class HomeActivity extends AppCompatActivity {
 
     String city, region, latitude, longitude;
     String loc;
+    CardView card1= findViewById(R.id.card1);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -321,7 +324,6 @@ public class HomeActivity extends AppCompatActivity {
                 // Searchable Activity
                 Intent intent = new Intent(HomeActivity.this,Searchable.class);
                 intent.putExtra("cityAndState", query);
-                System.out.println("At Home: " + query);
                 startActivity(intent);
                 return false;
             }
