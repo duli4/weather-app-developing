@@ -46,11 +46,11 @@
                 <LinearLayout
                     android:layout_width="298dp"
                     android:layout_height="124dp"
-                    android:gravity="center"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="0dp"
                     android:layout_marginEnd="0dp"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
@@ -97,6 +97,7 @@
             android:layout_marginTop="200dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
+            app:cardBackgroundColor="#272727"
             app:cardCornerRadius="10dp">
 
             <LinearLayout
@@ -152,7 +153,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="68%" />
+                        android:text="68%"
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:id="@+id/windSpeedData"
@@ -160,7 +162,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="4.05mph" />
+                        android:text="4.05mph"
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:id="@+id/visibilityData"
@@ -168,7 +171,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="9.94mi" />
+                        android:text="9.94mi"
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:id="@+id/pressureData"
@@ -176,7 +180,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="29.83inHg" />
+                        android:text="29.83inHg"
+                        android:textColor="@color/white" />
 
                 </LinearLayout>
 
@@ -192,7 +197,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Humidity" />
+                        android:text="Humidity"
+                        android:textColor="#9B9B9B" />
 
                     <TextView
                         android:id="@+id/windSpeed"
@@ -200,7 +206,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Wind Speed" />
+                        android:text="Wind Speed"
+                        android:textColor="#9B9B9B" />
 
                     <TextView
                         android:id="@+id/visibility"
@@ -208,7 +215,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Visibility" />
+                        android:text="Visibility"
+                        android:textColor="#9B9B9B" />
 
                     <TextView
                         android:id="@+id/pressure"
@@ -216,7 +224,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Pressure" />
+                        android:text="Pressure"
+                        android:textColor="#9B9B9B" />
 
                 </LinearLayout>
 
@@ -233,6 +242,7 @@
             android:layout_marginTop="360dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
+            app:cardBackgroundColor="#272727"
             app:cardCornerRadius="10dp">
 
             <LinearLayout
@@ -254,7 +264,8 @@
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="2021-10-27" />
+                        android:text="2021-10-27"
+                        android:textColor="@color/white" />
 
                     <ImageView
                         android:id="@+id/weatherRep1"
@@ -269,7 +280,8 @@
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="46" />
+                        android:text="46"
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:id="@+id/maxTemperature1"
@@ -277,7 +289,8 @@
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="60" />
+                        android:text="60"
+                        android:textColor="@color/white" />
 
                 </LinearLayout>
 
@@ -293,7 +306,8 @@
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="2021-10-27" />
+                        android:text="2021-10-27"
+                        android:textColor="@color/white" />
 
                     <ImageView
                         android:id="@+id/weatherRep2"
@@ -308,7 +322,8 @@
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="46" />
+                        android:text="46"
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:id="@+id/maxTemperature2"
@@ -316,7 +331,8 @@
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="60" />
+                        android:text="60"
+                        android:textColor="@color/white" />
 
                 </LinearLayout>
 
@@ -332,7 +348,8 @@
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="2021-10-27" />
+                        android:text="2021-10-27"
+                        android:textColor="@color/white" />
 
                     <ImageView
                         android:id="@+id/weatherRep3"
@@ -347,7 +364,8 @@
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="46" />
+                        android:text="46"
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:id="@+id/maxTemperature3"
@@ -355,7 +373,8 @@
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="60" />
+                        android:text="60"
+                        android:textColor="@color/white" />
 
                 </LinearLayout>
 
@@ -371,7 +390,8 @@
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="2021-10-27" />
+                        android:text="2021-10-27"
+                        android:textColor="@color/white" />
 
                     <ImageView
                         android:id="@+id/weatherRep4"
@@ -386,7 +406,8 @@
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="46" />
+                        android:text="46"
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:id="@+id/maxTemperature4"
@@ -394,7 +415,8 @@
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="60" />
+                        android:text="60"
+                        android:textColor="@color/white" />
 
                 </LinearLayout>
 
@@ -410,7 +432,8 @@
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="2021-10-27" />
+                        android:text="2021-10-27"
+                        android:textColor="@color/white" />
 
                     <ImageView
                         android:id="@+id/weatherRep5"
@@ -425,7 +448,8 @@
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="46" />
+                        android:text="46"
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:id="@+id/maxTemperature5"
@@ -433,7 +457,8 @@
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="60" />
+                        android:text="60"
+                        android:textColor="@color/white" />
 
                 </LinearLayout>
 
@@ -449,7 +474,8 @@
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="2021-10-27" />
+                        android:text="2021-10-27"
+                        android:textColor="@color/white" />
 
                     <ImageView
                         android:id="@+id/weatherRep6"
@@ -464,7 +490,8 @@
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="46" />
+                        android:text="46"
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:id="@+id/maxTemperature6"
@@ -472,7 +499,8 @@
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="60" />
+                        android:text="60"
+                        android:textColor="@color/white" />
 
                 </LinearLayout>
 

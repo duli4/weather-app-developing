@@ -53,7 +53,7 @@ public class HomeActivity extends AppCompatActivity {
 
     String city, region, latitude, longitude;
     String loc;
-    CardView card1= findViewById(R.id.card1);
+//    CardView card1= findViewById(R.id.card1);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +115,8 @@ public class HomeActivity extends AppCompatActivity {
                                                 JSONObject values = today.getJSONObject("values");
 
                                                 weatherType.setText(getWeatherInfo(values.getString("weatherCode")));
+
+                                                weatherIcon.setImageResource(getXMLWeather(values.getString("weatherCode")));
                                                 temperature.setText(Integer.toString((int) Math.round(values.getDouble("temperature"))) + " \u2109");
                                                 humidtyData.setText(values.getString("humidity") + "%");
                                                 windSpeedData.setText(values.getString("windSpeed") + "mph");
@@ -125,6 +127,7 @@ public class HomeActivity extends AppCompatActivity {
                                                 JSONObject values1 = day1.getJSONObject("values");
                                                 TextView date1 = (TextView) findViewById(R.id.date1);
                                                 ImageView weatherRep1 = (ImageView) findViewById(R.id.weatherRep1);
+                                                weatherRep1.setImageResource(getXMLWeather(values1.getString("weatherCode")));
                                                 TextView minTemperature1 = (TextView) findViewById(R.id.minTemperature1);
                                                 TextView maxTemperature1 = (TextView) findViewById(R.id.maxTemperature1);
                                                 date1.setText(day1.getString("startTime").split("T",0)[0]);
@@ -135,6 +138,7 @@ public class HomeActivity extends AppCompatActivity {
                                                 JSONObject values2 = day2.getJSONObject("values");
                                                 TextView date2 = (TextView) findViewById(R.id.date2);
                                                 ImageView weatherRep2 = (ImageView) findViewById(R.id.weatherRep2);
+                                                weatherRep2.setImageResource(getXMLWeather(values2.getString("weatherCode")));
                                                 TextView minTemperature2 = (TextView) findViewById(R.id.minTemperature2);
                                                 TextView maxTemperature2 = (TextView) findViewById(R.id.maxTemperature2);
                                                 date2.setText(day2.getString("startTime").split("T",0)[0]);
@@ -145,6 +149,7 @@ public class HomeActivity extends AppCompatActivity {
                                                 JSONObject values3 = day3.getJSONObject("values");
                                                 TextView date3 = (TextView) findViewById(R.id.date3);
                                                 ImageView weatherRep3 = (ImageView) findViewById(R.id.weatherRep3);
+                                                weatherRep3.setImageResource(getXMLWeather(values3.getString("weatherCode")));
                                                 TextView minTemperature3 = (TextView) findViewById(R.id.minTemperature3);
                                                 TextView maxTemperature3 = (TextView) findViewById(R.id.maxTemperature3);
                                                 date3.setText(day3.getString("startTime").split("T",0)[0]);
@@ -155,6 +160,7 @@ public class HomeActivity extends AppCompatActivity {
                                                 JSONObject values4 = day4.getJSONObject("values");
                                                 TextView date4 = (TextView) findViewById(R.id.date4);
                                                 ImageView weatherRep4 = (ImageView) findViewById(R.id.weatherRep4);
+                                                weatherRep4.setImageResource(getXMLWeather(values4.getString("weatherCode")));
                                                 TextView minTemperature4 = (TextView) findViewById(R.id.minTemperature4);
                                                 TextView maxTemperature4 = (TextView) findViewById(R.id.maxTemperature4);
                                                 date4.setText(day4.getString("startTime").split("T",0)[0]);
@@ -165,6 +171,7 @@ public class HomeActivity extends AppCompatActivity {
                                                 JSONObject values5 = day5.getJSONObject("values");
                                                 TextView date5 = (TextView) findViewById(R.id.date5);
                                                 ImageView weatherRep5 = (ImageView) findViewById(R.id.weatherRep5);
+                                                weatherRep5.setImageResource(getXMLWeather(values5.getString("weatherCode")));
                                                 TextView minTemperature5 = (TextView) findViewById(R.id.minTemperature5);
                                                 TextView maxTemperature5 = (TextView) findViewById(R.id.maxTemperature5);
                                                 date5.setText(day5.getString("startTime").split("T",0)[0]);
@@ -175,11 +182,13 @@ public class HomeActivity extends AppCompatActivity {
                                                 JSONObject values6 = day6.getJSONObject("values");
                                                 TextView date6 = (TextView) findViewById(R.id.date6);
                                                 ImageView weatherRep6 = (ImageView) findViewById(R.id.weatherRep6);
+                                                weatherRep6.setImageResource(getXMLWeather(values6.getString("weatherCode")));
                                                 TextView minTemperature6 = (TextView) findViewById(R.id.minTemperature6);
                                                 TextView maxTemperature6 = (TextView) findViewById(R.id.maxTemperature6);
                                                 date6.setText(day6.getString("startTime").split("T",0)[0]);
                                                 minTemperature6.setText(Integer.toString((int) Math.round(values6.getDouble("temperatureMin"))));
                                                 maxTemperature6.setText(Integer.toString((int) Math.round(values6.getDouble("temperatureMax"))));
+
 
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
@@ -212,6 +221,103 @@ public class HomeActivity extends AppCompatActivity {
         // Add the request to the RequestQueue.
         queue.add(geoJsonObjectRequest);
 
+    }
+
+    private int getXMLWeather(String code_number)
+    {
+        if(code_number.equals("1000"))
+        {
+            return R.drawable.ic_clear_day;
+        }
+        if(code_number.equals("1100"))
+        {
+            return R.drawable.ic_mostly_clear_day;
+        }
+        if(code_number.equals("1101"))
+        {
+            return R.drawable.ic_partly_cloudy_day;
+        }
+        if(code_number.equals("1102"))
+        {
+            return R.drawable.ic_mostly_cloudy;
+        }
+        if(code_number.equals("1001"))
+        {
+            return R.drawable.ic_cloudy;
+        }
+        if(code_number.equals("2000"))
+        {
+            return R.drawable.ic_fog;
+        }
+        if(code_number.equals("2100"))
+        {
+            return R.drawable.ic_fog_light;
+        }
+        if(code_number.equals("8000"))
+        {
+            return R.drawable.ic_tstorm;
+        }
+        if(code_number.equals("5001"))
+        {
+            return R.drawable.ic_flurries;
+        }
+        if(code_number.equals("5100"))
+        {
+            return R.drawable.ic_snow_light;
+        }
+        if(code_number.equals("5000"))
+        {
+            return R.drawable.ic_snow;
+        }
+        if(code_number.equals("5101"))
+        {
+            return R.drawable.ic_snow_heavy;
+        }
+        if(code_number.equals("7102"))
+        {
+            return R.drawable.ic_ice_pellets_light;
+        }
+        if(code_number.equals("7000"))
+        {
+            return R.drawable.ic_ice_pellets;
+        }
+        if(code_number.equals("7101"))
+        {
+            return R.drawable.ic_ice_pellets_heavy;
+        }
+        if(code_number.equals("4000"))
+        {
+            return R.drawable.ic_drizzle;
+        }
+        if(code_number.equals("6000"))
+        {
+            return R.drawable.ic_freezing_drizzle;
+        }
+        if(code_number.equals("6200"))
+        {
+            return R.drawable.ic_freezing_rain;
+        }
+        if(code_number.equals("6001"))
+        {
+            return R.drawable.ic_freezing_rain;
+        }
+        if(code_number.equals("6201"))
+        {
+            return R.drawable.ic_freezing_rain_heavy;
+        }
+        if(code_number.equals("4200"))
+        {
+            return R.drawable.ic_rain_light;
+        }
+        if(code_number.equals("4001"))
+        {
+            return R.drawable.ic_rain;
+        }
+        if(code_number.equals("4201"))
+        {
+            return R.drawable.ic_rain_heavy;
+        }
+        return 0;
     }
 
     private String getWeatherInfo(String code_number) {
