@@ -14,7 +14,7 @@
         android:theme="@style/Theme.WeatherApp">
         <activity
             android:name=".Details"
-            android:exported="false" />
+            android:exported="false"/>
 
         <meta-data
             android:name="com.google.android.actions"
