@@ -78,6 +78,12 @@ public class Details extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
 
+                try{
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse( "http://twitter.com/intent/tweet?text=Check out Bellevue, Washington's weather! It is 56.86F!#CSCI571WeatherSearch")));
+                } catch (ActivityNotFoundException e) {
+
+                    e.printStackTrace();
+                }
                 return false;
             }
         });
