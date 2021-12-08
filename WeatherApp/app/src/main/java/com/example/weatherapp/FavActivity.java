@@ -83,7 +83,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class HomeFragment extends Fragment {
+public class FavActivity extends Fragment {
     String city, region, latitude, longitude;
     String loc, seachResultFav = "";
 
@@ -92,11 +92,14 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull @org.jetbrains.annotations.NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.activity_home, container, false);
-
+        String strtext = getArguments().getString("edttext");
+        System.out.println("this is another fav fragment, and value is: " + strtext);
+        String cityAndState = strtext;
         //        // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
 
-        String geoURL = "https://ipinfo.io/?token=20ef1690f3db86";
+        String geoURL = "https://maps.googleapis.com/maps/api/geocode/json?address="
+                + cityAndState + "&key=AIzaSyCiknUSvpLnLnwp8JoWDaY8GWWIfUWhx60";
 
         JsonObjectRequest geoJsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, geoURL, null, new Response.Listener<JSONObject>() {
@@ -104,17 +107,14 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            city = (String) response.get("city");
-                            region = (String) response.get("region");
-                            String cityState = city+ ", "+ region;
-                            TextView location = (TextView) rootView.findViewById(R.id.location);
-                            location.setText(cityState);
+                            JSONArray results = response.getJSONArray("results");
+                            JSONObject element = results.getJSONObject(0);
+                            JSONObject geometry = element.getJSONObject("geometry");
+                            JSONObject location = geometry.getJSONObject("location");
+                            latitude = location.getString("lat");
+                            longitude = location.getString("lng");
 
-                            loc = (String) response.get("loc");
-                            latitude = loc.split(",",0)[0];
-                            longitude = loc.split(",",0)[1];
-
-
+//                            System.out.println(latitude + ", " + longitude );
 
                             String tmrURL = "https://api.tomorrow.io/v4/timelines?location="
                                     + latitude + ','
@@ -143,10 +143,9 @@ public class HomeFragment extends Fragment {
                                                 JSONArray intervals = element.getJSONArray("intervals");
                                                 JSONObject today = (JSONObject) intervals.get(0);
                                                 JSONObject values = today.getJSONObject("values");
+                                                weatherIcon.setImageResource(getXMLWeather(values.getString("weatherCode")));
 
                                                 weatherType.setText(getWeatherInfo(values.getString("weatherCode")));
-
-                                                weatherIcon.setImageResource(getXMLWeather(values.getString("weatherCode")));
                                                 temperature.setText(Integer.toString((int) Math.round(values.getDouble("temperature"))) + " \u2109");
                                                 humidtyData.setText(values.getString("humidity") + "%");
                                                 windSpeedData.setText(values.getString("windSpeed") + "mph");
@@ -212,13 +211,12 @@ public class HomeFragment extends Fragment {
                                                 JSONObject values6 = day6.getJSONObject("values");
                                                 TextView date6 = (TextView) rootView.findViewById(R.id.date6);
                                                 ImageView weatherRep6 = (ImageView) rootView.findViewById(R.id.weatherRep6);
-                                                weatherRep6.setImageResource(getXMLWeather(values6.getString("weatherCode")));
+                                                weatherRep6.setImageResource(getXMLWeather(values5.getString("weatherCode")));
                                                 TextView minTemperature6 = (TextView) rootView.findViewById(R.id.minTemperature6);
                                                 TextView maxTemperature6 = (TextView) rootView.findViewById(R.id.maxTemperature6);
                                                 date6.setText(day6.getString("startTime").split("T",0)[0]);
                                                 minTemperature6.setText(Integer.toString((int) Math.round(values6.getDouble("temperatureMin"))));
                                                 maxTemperature6.setText(Integer.toString((int) Math.round(values6.getDouble("temperatureMax"))));
-
 
                                             } catch (JSONException e) {
                                                 e.printStackTrace();

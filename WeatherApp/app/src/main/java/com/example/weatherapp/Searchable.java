@@ -59,7 +59,7 @@ import java.nio.charset.StandardCharsets;
 
 public class Searchable extends AppCompatActivity {
 
-    String cityAndState, latitude, longitude;
+    String cityAndState, latitude, longitude, reCity = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -234,29 +234,30 @@ public class Searchable extends AppCompatActivity {
                 CharSequence text = cityAndState + " add to favorites";
                 int duration = Toast.LENGTH_SHORT;
 
-//                Toast toast = Toast.makeText(context, text, duration);
-//                toast.show();
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
                 add_btn.setImageResource(R.drawable.map_marker_minus);
-                FileOutputStream fos = null;
-                //save
-                try {
-                    fos = openFileOutput("city.txt", MODE_PRIVATE);
-                    fos.write(cityAndState.getBytes(StandardCharsets.UTF_8));
-
-                    Toast.makeText(context,"save success "+ getFilesDir(), duration).show();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } finally {
-                    if (fos != null) {
-                        try {
-                            fos.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
+                reCity = cityAndState;
+//                FileOutputStream fos = null;
+//                //save
+//                try {
+//                    fos = openFileOutput("city.txt", MODE_PRIVATE);
+//                    fos.write(cityAndState.getBytes(StandardCharsets.UTF_8));
+//
+//                    Toast.makeText(context,"save success "+ getFilesDir(), duration).show();
+//                } catch (FileNotFoundException e) {
+//                    e.printStackTrace();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                } finally {
+//                    if (fos != null) {
+//                        try {
+//                            fos.close();
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }
 
             }
         });
@@ -497,6 +498,7 @@ public class Searchable extends AppCompatActivity {
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
                 Intent intent = new Intent(Searchable.this, HomeActivity.class);
+                intent.putExtra("cityAndState", reCity);
                 startActivity(intent);
                 return true;
             }
