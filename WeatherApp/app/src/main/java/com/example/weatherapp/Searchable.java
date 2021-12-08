@@ -42,10 +42,16 @@ import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 public class Searchable extends AppCompatActivity {
 
@@ -213,6 +219,43 @@ public class Searchable extends AppCompatActivity {
 
         // Add the request to the RequestQueue.
         queue.add(geoJsonObjectRequest);
+
+        // Add the request to the RequestQueue.
+        queue.add(geoJsonObjectRequest);
+        FloatingActionButton add_btn = findViewById(R.id.fav);
+        add_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = getApplicationContext();
+                CharSequence text = cityAndState + " add to favorites";
+                int duration = Toast.LENGTH_SHORT;
+
+//                Toast toast = Toast.makeText(context, text, duration);
+//                toast.show();
+                add_btn.setImageResource(R.drawable.map_marker_minus);
+                FileOutputStream fos = null;
+                //save
+                try {
+                    fos = openFileOutput("city.txt", MODE_PRIVATE);
+                    fos.write(cityAndState.getBytes(StandardCharsets.UTF_8));
+
+                    Toast.makeText(context,"save success "+ getFilesDir(), duration).show();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (fos != null) {
+                        try {
+                            fos.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+            }
+        });
 
     }
 

@@ -49,21 +49,31 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class HomeActivity extends AppCompatActivity {
 
     String city, region, latitude, longitude;
     String loc;
-//    CardView card1= findViewById(R.id.card1);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fragment);
+        setContentView(R.layout.activity_home);
 
-        Fragment newFragment =new  ViewPagerWithCircleIndicatorView();
-        FragmentTransaction transaction =getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment,newFragment);
-        transaction.commit();
+        CardView card1= findViewById(R.id.card1);
+
+        load();
+
+//        Fragment newFragment =new  ViewPagerWithCircleIndicatorView();
+//        FragmentTransaction transaction =getSupportFragmentManager().beginTransaction();
+//        transaction.replace(R.id.fragment,newFragment);
+//        transaction.commit();
 
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -220,6 +230,13 @@ public class HomeActivity extends AppCompatActivity {
 
         // Add the request to the RequestQueue.
         queue.add(geoJsonObjectRequest);
+
+        card1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, Details.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -442,6 +459,37 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+    public void load()
+    {
+        FileInputStream fis = null;
+        try {
+            fis = openFileInput("city.txt");
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br = new BufferedReader(isr);
+            StringBuilder sb = new StringBuilder();
+            String text;
+            while((text = br.readLine()) != null)
+            {
+                sb.append(text).append("\n");
+            }
+            System.out.println("read from back end file city info: " + sb.toString());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if (fis != null)
+            {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
     }
 
 }
