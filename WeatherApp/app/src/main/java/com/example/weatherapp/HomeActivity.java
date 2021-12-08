@@ -54,11 +54,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
     String city, region, latitude, longitude;
     String loc;
+    List<String> list = new ArrayList<String>();
 
 
     @Override
@@ -475,6 +478,7 @@ public class HomeActivity extends AppCompatActivity {
                 sb.append(text).append("\n");
             }
             System.out.println("read from back end file city info: " + sb.toString());
+            list.add(sb.toString());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
