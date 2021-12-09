@@ -8,6 +8,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -35,11 +37,16 @@ public class Details extends AppCompatActivity {
         pager2.setAdapter(adapter);
 
         tabLayout.addTab(tabLayout.newTab().setText("TODAY"));
+
+//        tabLayout.setBackgroundColor(Color.parseColor("#000000"));
         tabLayout.addTab(tabLayout.newTab().setText("WEEKLY"));
         tabLayout.addTab(tabLayout.newTab().setText("WEATHER DATA"));
         tabLayout.getTabAt(0).setIcon(R.drawable.calendar_today);
         tabLayout.getTabAt(1).setIcon(R.drawable.trending_up);
         tabLayout.getTabAt(2).setIcon(R.drawable.thermometer_low);
+        tabLayout.setTabTextColors(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
+        tabLayout.setTabIconTint(ColorStateList.valueOf(Color.parseColor("#FFFFFF")));
+        tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FFFFFF"));
 
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
