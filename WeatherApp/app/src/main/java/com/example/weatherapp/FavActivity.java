@@ -97,6 +97,8 @@ public class FavActivity extends Fragment {
         String cityAndState = strtext;
         //        // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        TextView location = (TextView) rootView.findViewById(R.id.location);
+        location.setText(cityAndState);
 
         String geoURL = "https://maps.googleapis.com/maps/api/geocode/json?address="
                 + cityAndState + "&key=AIzaSyCiknUSvpLnLnwp8JoWDaY8GWWIfUWhx60";
