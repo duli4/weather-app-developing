@@ -23,6 +23,7 @@ public class Details extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager2 pager2;
     FragmentAdapter adapter;
+    String WS, WT, Pre, Preci, Temp, Hum, Vis, CC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,15 +33,16 @@ public class Details extends AppCompatActivity {
         String WS, WT, Pre, Preci, Temp, Hum, Vis, CC;
         Intent HomeIntent = getIntent();
         WS = HomeIntent.getExtras().getString("WS");
-        WT = HomeIntent.getExtras().getString("WT");
-        Pre = HomeIntent.getExtras().getString("Pre");
-        Preci = HomeIntent.getExtras().getString("Preci");
-        Temp = HomeIntent.getExtras().getString("Temp");
-        Hum = HomeIntent.getExtras().getString("Hum");
-        Vis = HomeIntent.getExtras().getString("Vis");
-        CC = HomeIntent.getExtras().getString("CC");
+//        WT = HomeIntent.getExtras().getString("WT");
+//        Pre = HomeIntent.getExtras().getString("Pre");
+//        Preci = HomeIntent.getExtras().getString("Preci");
+//        Temp = HomeIntent.getExtras().getString("Temp");
+//        Hum = HomeIntent.getExtras().getString("Hum");
+//        Vis = HomeIntent.getExtras().getString("Vis");
+//        CC = HomeIntent.getExtras().getString("CC");
 
-        System.out.println("xixixixi"+ WS);
+//        System.out.println("xixixixi"+ WS + " " + WT);
+
 
 
         tabLayout = findViewById(R.id.tab_layout);

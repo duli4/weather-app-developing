@@ -270,12 +270,12 @@ public class HomeFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), Details.class);
                 intent.putExtra("WS", WS);
                 intent.putExtra("WT", WT);
-                intent.putExtra("Pre", Pre);
-                intent.putExtra("Preci", Preci);
-                intent.putExtra("Temp", Temp);
-                intent.putExtra("Hum", Hum);
-                intent.putExtra("Vis", Vis);
-                intent.putExtra("CC", CC);
+//                intent.putExtra("Pre", Pre);
+//                intent.putExtra("Preci", Preci);
+//                intent.putExtra("Temp", Temp);
+//                intent.putExtra("Hum", Hum);
+//                intent.putExtra("Vis", Vis);
+//                intent.putExtra("CC", CC);
 
                 startActivity(intent);
             }
@@ -478,32 +478,6 @@ public class HomeFragment extends Fragment {
         return 0;
     }
 
-    //    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//
-//        getMenuInflater().inflate(R.menu.search_menu, menu);
-//        MenuItem menuItem = menu.findItem(R.id.action_search);
-//        SearchView searchView = (SearchView) menuItem.getActionView();
-//        searchView.setQueryHint("Enter the name of city");
-//
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                // Searchable Activity
-//                Intent intent = new Intent(HomeActivity.this,Searchable.class);
-//                intent.putExtra("cityAndState", query);
-//                startActivity(intent);
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                // AUTO COMPLETE LATER
-//                return false;
-//            }
-//        });
-//
-//        return super.onCreateOptionsMenu(menu);
-//    }
+
 
 }
