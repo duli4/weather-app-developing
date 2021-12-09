@@ -56,23 +56,17 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 
 public class Searchable extends AppCompatActivity {
 
     String cityAndState, latitude, longitude, reCity = "";
-    ArrayList<String> list = new ArrayList<String>();
-    int Flag = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchable);
-//        Intent HomeIntent = getIntent();
-//        cityAndState = HomeIntent.getExtras().getString("cityAndState");
-        list = (ArrayList<String>) getIntent().getSerializableExtra("cityAndState");
-        cityAndState = list.get(list.size() - 1);
-        list.remove(list.size() - 1);
-        System.out.println("searchable list is: " + cityAndState + list);
+        Intent HomeIntent = getIntent();
+        cityAndState = HomeIntent.getExtras().getString("cityAndState");
         TextView location = (TextView) findViewById(R.id.location);
         location.setText(cityAndState);
 
@@ -236,32 +230,34 @@ public class Searchable extends AppCompatActivity {
         add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Flag == 0)
-                {
-                    Context context = getApplicationContext();
-                    CharSequence text = cityAndState + " add to favorites";
-                    int duration = Toast.LENGTH_SHORT;
+                Context context = getApplicationContext();
+                CharSequence text = cityAndState + " add to favorites";
+                int duration = Toast.LENGTH_SHORT;
 
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
-                    add_btn.setImageResource(R.drawable.map_marker_minus);
-                    reCity = cityAndState;
-                    list.add(cityAndState);
-                    Flag = 1;
-                }
-                else
-                {
-                    Context context = getApplicationContext();
-                    CharSequence text = cityAndState + " was removed from favorites";
-                    int duration = Toast.LENGTH_SHORT;
-
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
-                    add_btn.setImageResource(R.drawable.map_marker_plus);
-                    reCity = cityAndState;
-                    list.remove(cityAndState);
-                    Flag = 0;
-                }
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+                add_btn.setImageResource(R.drawable.map_marker_minus);
+                reCity = cityAndState;
+//                FileOutputStream fos = null;
+//                //save
+//                try {
+//                    fos = openFileOutput("city.txt", MODE_PRIVATE);
+//                    fos.write(cityAndState.getBytes(StandardCharsets.UTF_8));
+//
+//                    Toast.makeText(context,"save success "+ getFilesDir(), duration).show();
+//                } catch (FileNotFoundException e) {
+//                    e.printStackTrace();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                } finally {
+//                    if (fos != null) {
+//                        try {
+//                            fos.close();
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }
 
             }
         });
@@ -481,7 +477,7 @@ public class Searchable extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 // Searchable Activity
                 Intent intent = new Intent(Searchable.this,Searchable.class);
-                intent.putExtra("cityAndState", list);
+                intent.putExtra("cityAndState", query);
                 startActivity(intent);
                 return false;
             }
@@ -502,7 +498,7 @@ public class Searchable extends AppCompatActivity {
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
                 Intent intent = new Intent(Searchable.this, HomeActivity.class);
-                intent.putExtra("cityAndState", list);
+                intent.putExtra("cityAndState", reCity);
                 startActivity(intent);
                 return true;
             }
