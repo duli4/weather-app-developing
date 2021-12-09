@@ -40,6 +40,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.Request;
@@ -82,6 +83,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class FirstFragment extends Fragment {
     String city, region, latitude, longitude;
@@ -94,14 +97,22 @@ public class FirstFragment extends Fragment {
     public View onCreateView(@NonNull @org.jetbrains.annotations.NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_first, container, false);
         try {
-            String strtext = getArguments().getString("edttext");
-            System.out.println("this is another fav fragment, and value is: " + strtext);
+            WS = getArguments().getString("WS");
+            WT = getArguments().getString("WT");
+            Pre = getArguments().getString("Pre");
+            Preci = getArguments().getString("Preci");
+            Temp = getArguments().getString("Temp");
+            Hum = getArguments().getString("Hum");
+            Vis = getArguments().getString("Vis");
+            CC = getArguments().getString("CC");
+
+            System.out.println("this is another fav fragment, and value is: " + WS);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        TextView windSpeed = rootView.findViewById(R.id.ws);
+        windSpeed.setText(WS);
         return rootView;
     }
-
 
 }

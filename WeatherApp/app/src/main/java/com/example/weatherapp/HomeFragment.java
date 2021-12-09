@@ -162,7 +162,21 @@ public class HomeFragment extends Fragment {
                                                 Hum = values.getString("humidity") + "%";
                                                 Vis = values.getString("visibility") + "mi";
                                                 CC = values.getString("cloudCover") + "%";
-
+                                                CardView card1 = rootView.findViewById(R.id.card1);
+                                                card1.setOnClickListener(new View.OnClickListener() {
+                                                    public void onClick(View v) {
+                                                        Intent intent = new Intent(getActivity(), Details.class);
+                                                        intent.putExtra("WS", WS);
+                                                        intent.putExtra("WT", WT);
+                                                        intent.putExtra("Pre", Pre);
+                                                        intent.putExtra("Preci", Preci);
+                                                        intent.putExtra("Temp", Temp);
+                                                        intent.putExtra("Hum", Hum);
+                                                        intent.putExtra("Vis", Vis);
+                                                        intent.putExtra("CC", CC);
+                                                        startActivity(intent);
+                                                    }
+                                                });
 
                                                 JSONObject day1 = (JSONObject) intervals.get(1);
                                                 JSONObject values1 = day1.getJSONObject("values");
@@ -264,22 +278,22 @@ public class HomeFragment extends Fragment {
 
 
         CardView card1 = rootView.findViewById(R.id.card1);
-        card1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getActivity(), Details.class);
-                intent.putExtra("WS", WS);
-                intent.putExtra("WT", WT);
-//                intent.putExtra("Pre", Pre);
-//                intent.putExtra("Preci", Preci);
-//                intent.putExtra("Temp", Temp);
-//                intent.putExtra("Hum", Hum);
-//                intent.putExtra("Vis", Vis);
-//                intent.putExtra("CC", CC);
-
-                startActivity(intent);
-            }
-        });
+//        card1.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//
+//                Intent intent = new Intent(getActivity(), Details.class);
+//                intent.putExtra("WS", WS);
+//                intent.putExtra("WT", WT);
+////                intent.putExtra("Pre", Pre);
+////                intent.putExtra("Preci", Preci);
+////                intent.putExtra("Temp", Temp);
+////                intent.putExtra("Hum", Hum);
+////                intent.putExtra("Vis", Vis);
+////                intent.putExtra("CC", CC);
+//
+//                startActivity(intent);
+//            }
+//        });
 
         return rootView;
     }

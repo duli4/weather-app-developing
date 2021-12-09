@@ -253,6 +253,7 @@ public class FavActivity extends Fragment {
         CardView card1 = rootView.findViewById(R.id.card1);
         card1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                System.out.println("in Fav activity on click function");
                 Intent intent = new Intent(getActivity(), Details.class);
                 startActivity(intent);
             }

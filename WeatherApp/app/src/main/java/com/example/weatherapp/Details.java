@@ -1,9 +1,13 @@
 package com.example.weatherapp;
 
 import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Lifecycle;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.ActivityNotFoundException;
@@ -22,7 +26,7 @@ public class Details extends AppCompatActivity {
 
     TabLayout tabLayout;
     ViewPager2 pager2;
-    FragmentAdapter adapter;
+    innerAdapter adapter;
     String WS, WT, Pre, Preci, Temp, Hum, Vis, CC;
 
     @Override
@@ -30,16 +34,19 @@ public class Details extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        String WS, WT, Pre, Preci, Temp, Hum, Vis, CC;
-        Intent HomeIntent = getIntent();
-        WS = HomeIntent.getExtras().getString("WS");
-//        WT = HomeIntent.getExtras().getString("WT");
-//        Pre = HomeIntent.getExtras().getString("Pre");
-//        Preci = HomeIntent.getExtras().getString("Preci");
-//        Temp = HomeIntent.getExtras().getString("Temp");
-//        Hum = HomeIntent.getExtras().getString("Hum");
-//        Vis = HomeIntent.getExtras().getString("Vis");
-//        CC = HomeIntent.getExtras().getString("CC");
+        try {
+            Intent HomeIntent = getIntent();
+            WS = HomeIntent.getExtras().getString("WS");
+            WT = HomeIntent.getExtras().getString("WT");
+            Pre = HomeIntent.getExtras().getString("Pre");
+            Preci = HomeIntent.getExtras().getString("Preci");
+            Temp = HomeIntent.getExtras().getString("Temp");
+            Hum = HomeIntent.getExtras().getString("Hum");
+            Vis = HomeIntent.getExtras().getString("Vis");
+            CC = HomeIntent.getExtras().getString("CC");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 //        System.out.println("xixixixi"+ WS + " " + WT);
 
@@ -49,7 +56,7 @@ public class Details extends AppCompatActivity {
         pager2 = findViewById(R.id.view_pager2);
 
         FragmentManager fm = getSupportFragmentManager();
-        adapter = new FragmentAdapter(fm, getLifecycle());
+        adapter = new innerAdapter(fm, getLifecycle());
         pager2.setAdapter(adapter);
 
         tabLayout.addTab(tabLayout.newTab().setText("TODAY"));
@@ -115,5 +122,45 @@ public class Details extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    private class innerAdapter extends FragmentStateAdapter {
+
+        public innerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
+            super(fragmentManager, lifecycle);
+        }
+
+        @NonNull
+        @Override
+        public Fragment createFragment(int position) {
+
+            switch (position) {
+
+                case 0:
+                    Bundle bundle = new Bundle();
+                    bundle.putString("WS", WS);
+                    bundle.putString("WT", WT);
+                    bundle.putString("Pre", Pre);
+                    bundle.putString("Preci", Preci);
+                    bundle.putString("Temp", Temp);
+                    bundle.putString("Hum", Hum);
+                    bundle.putString("Vis", Vis);
+                    bundle.putString("CC", CC);
+                    FirstFragment fragobj = new FirstFragment();
+                    fragobj.setArguments(bundle);
+                    return fragobj;
+                case 1:
+                    return new SecondFragment();
+                case 2:
+                    return new ThirdFragment();
+                default:
+                    return null;
+            }
+        }
+
+
+        @Override
+        public int getItemCount() {
+            return 3;
+        }
+    }
 
 }
