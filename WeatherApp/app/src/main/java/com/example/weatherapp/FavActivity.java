@@ -228,6 +228,10 @@ public class FavActivity extends Fragment {
                                                 Hum = values.getString("humidity") + "%";
                                                 Vis = values.getString("visibility") + "mi";
                                                 CC = values.getString("cloudCover") + "%";
+                                                String preci_1 = Integer.toString((int) Math.round(values.getDouble("precipitationProbability")));
+                                                String hum_1 = Integer.toString((int) Math.round(values.getDouble("humidity")));
+                                                String CC_1 = Integer.toString((int) Math.round(values.getDouble("cloudCover")));
+
                                                 String MinTemp = Integer.toString((int) Math.round(values.getDouble("temperatureMin")));
                                                 String MinTemp1 = Integer.toString((int) Math.round(values1.getDouble("temperatureMin")));
                                                 String MinTemp2= Integer.toString((int) Math.round(values2.getDouble("temperatureMin")));
@@ -271,6 +275,10 @@ public class FavActivity extends Fragment {
                                                         intent.putExtra("maxTemp4", MaxTemp4);
                                                         intent.putExtra("maxTemp5", MaxTemp5);
                                                         intent.putExtra("maxTemp6", MaxTemp6);
+
+                                                        intent.putExtra("preci_1", preci_1);
+                                                        intent.putExtra("hum_1", hum_1);
+                                                        intent.putExtra("CC_1", CC_1);
                                                         startActivity(intent);
                                                     }
                                                 });

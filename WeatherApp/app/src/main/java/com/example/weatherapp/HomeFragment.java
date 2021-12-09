@@ -229,9 +229,9 @@ public class HomeFragment extends Fragment {
                                                 Hum = values.getString("humidity") + "%";
                                                 Vis = values.getString("visibility") + "mi";
                                                 CC = values.getString("cloudCover") + "%";
-                                                String preci_1 = values.getString("precipitationProbability");
-                                                String hum_1 = values.getString("humidity");
-                                                String CC_1 = values.getString("cloudCover");
+                                                String preci_1 = Integer.toString((int) Math.round(values.getDouble("precipitationProbability")));
+                                                String hum_1 = Integer.toString((int) Math.round(values.getDouble("humidity")));
+                                                String CC_1 = Integer.toString((int) Math.round(values.getDouble("cloudCover")));
 
                                                 String MinTemp = Integer.toString((int) Math.round(values.getDouble("temperatureMin")));
                                                 String MinTemp1 = Integer.toString((int) Math.round(values1.getDouble("temperatureMin")));
