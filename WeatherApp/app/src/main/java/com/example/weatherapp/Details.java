@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -25,7 +26,20 @@ public class Details extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-//        System.out.println("This is Details Activity!");
+
+        String WS, WT, Pre, Preci, Temp, Hum, Vis, CC;
+        Intent HomeIntent = getIntent();
+        WS = HomeIntent.getExtras().getString("WS");
+        WT = HomeIntent.getExtras().getString("WT");
+        Pre = HomeIntent.getExtras().getString("Pre");
+        Preci = HomeIntent.getExtras().getString("Preci");
+        Temp = HomeIntent.getExtras().getString("Temp");
+        Hum = HomeIntent.getExtras().getString("Hum");
+        Vis = HomeIntent.getExtras().getString("Vis");
+        CC = HomeIntent.getExtras().getString("CC");
+
+        System.out.println("xixixixi"+ WS);
+
 
         tabLayout = findViewById(R.id.tab_layout);
         pager2 = findViewById(R.id.view_pager2);
@@ -66,6 +80,7 @@ public class Details extends AppCompatActivity {
                 tabLayout.selectTab(tabLayout.getTabAt(position));
             }
         });
+
     }
 
     @Override
@@ -90,5 +105,6 @@ public class Details extends AppCompatActivity {
 
         return super.onCreateOptionsMenu(menu);
     }
+
 
 }

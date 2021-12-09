@@ -36,6 +36,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/ws"
                     android:text="0.29 mph"
                     android:textSize="18sp"/>
 
@@ -75,6 +76,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/pre"
                     android:text="Pressure"
                     android:textSize="18sp"/>
 
@@ -102,6 +104,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/preci"
                     android:text="0.00 %"
                     android:textSize="18sp"/>
 
@@ -136,6 +139,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/temp"
                     android:text="64 \u2109"
                     android:textSize="18sp"/>
 

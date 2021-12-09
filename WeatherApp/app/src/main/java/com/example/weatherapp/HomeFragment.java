@@ -86,6 +86,7 @@ import androidx.fragment.app.Fragment;
 public class HomeFragment extends Fragment {
     String city, region, latitude, longitude;
     String loc, seachResultFav = "";
+    String WS, WT, Pre, Preci, Temp, Hum, Vis, CC;
 
     @Nullable
     @org.jetbrains.annotations.Nullable
@@ -152,6 +153,16 @@ public class HomeFragment extends Fragment {
                                                 windSpeedData.setText(values.getString("windSpeed") + "mph");
                                                 visibilityData.setText(values.getString("visibility") + "mi");
                                                 pressureData.setText(values.getString("pressureSurfaceLevel") + "inHg");
+
+                                                WT = getWeatherInfo(values.getString("weatherCode"));
+                                                WS = values.getString("windSpeed") + "mph";
+                                                Pre = values.getString("pressureSurfaceLevel") + "inHg";
+                                                Preci = values.getString("precipitationProbability") + "%";
+                                                Temp = Integer.toString((int) Math.round(values.getDouble("temperature"))) + " \u2109";
+                                                Hum = values.getString("humidity") + "%";
+                                                Vis = values.getString("visibility") + "mi";
+                                                CC = values.getString("cloudCover") + "%";
+
 
                                                 JSONObject day1 = (JSONObject) intervals.get(1);
                                                 JSONObject values1 = day1.getJSONObject("values");
@@ -251,10 +262,21 @@ public class HomeFragment extends Fragment {
         // Add the request to the RequestQueue.
         queue.add(geoJsonObjectRequest);
 
+
         CardView card1 = rootView.findViewById(R.id.card1);
         card1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
                 Intent intent = new Intent(getActivity(), Details.class);
+                intent.putExtra("WS", WS);
+                intent.putExtra("WT", WT);
+                intent.putExtra("Pre", Pre);
+                intent.putExtra("Preci", Preci);
+                intent.putExtra("Temp", Temp);
+                intent.putExtra("Hum", Hum);
+                intent.putExtra("Vis", Vis);
+                intent.putExtra("CC", CC);
+
                 startActivity(intent);
             }
         });
