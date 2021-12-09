@@ -98,20 +98,45 @@ public class FirstFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_first, container, false);
         try {
             WS = getArguments().getString("WS");
+            TextView windSpeed = rootView.findViewById(R.id.ws);
+            windSpeed.setText(WS);
+
             WT = getArguments().getString("WT");
+            TextView weatherType = rootView.findViewById(R.id.wt);
+            weatherType.setText(WT);
+
             Pre = getArguments().getString("Pre");
+            TextView pressure = rootView.findViewById(R.id.pre);
+            pressure.setText(Pre);
+
+
             Preci = getArguments().getString("Preci");
+            TextView precipitation = rootView.findViewById(R.id.preci);
+            precipitation.setText(Preci);
+
             Temp = getArguments().getString("Temp");
+            TextView temperature = rootView.findViewById(R.id.temp);
+            temperature.setText(Preci);
+
+
             Hum = getArguments().getString("Hum");
+            TextView humidity = rootView.findViewById(R.id.hum);
+            humidity.setText(Preci);
+
+
             Vis = getArguments().getString("Vis");
+            TextView visibile = rootView.findViewById(R.id.vis);
+            visibile.setText(Preci);
+
             CC = getArguments().getString("CC");
+            TextView cloudCover = rootView.findViewById(R.id.cc);
+            cloudCover.setText(CC);
 
             System.out.println("this is another fav fragment, and value is: " + WS);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        TextView windSpeed = rootView.findViewById(R.id.ws);
-        windSpeed.setText(WS);
         return rootView;
     }
 

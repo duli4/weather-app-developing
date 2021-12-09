@@ -187,6 +187,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/wt"
                     android:text="Mostly Clear"
                     android:textSize="18sp"
                     android:textColor="@color/white"/>
@@ -224,6 +225,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Humidity"
+                    android:id="@+id/hum"
                     android:textSize="18sp"
                     android:textColor="@color/white"/>
 
@@ -261,6 +263,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Visibility"
+                    android:id="@+id/vis"
                     android:textSize="18sp"
                     android:textColor="@color/white"/>
 
@@ -297,6 +300,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cloud Cover"
+                    android:id="@+id/cc"
                     android:textSize="18sp"
                     android:textColor="@color/white"/>
 

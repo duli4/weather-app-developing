@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.highsoft.highcharts.common.HIColor;
 import com.highsoft.highcharts.common.HIGradient;
@@ -31,6 +32,7 @@ import com.highsoft.highcharts.common.hichartsclasses.HIYAxis;
 import com.highsoft.highcharts.core.HIChartView;
 import com.highsoft.highcharts.core.HIFunction;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -51,7 +53,8 @@ public class ThirdFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    String  Preci,  Hum,  CC;
+    int p1, h1, c1;
     public ThirdFragment() {
         // Required empty public constructor
     }
@@ -88,6 +91,20 @@ public class ThirdFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_second, container, false);
+        System.out.println("in Fragment3 ");
+        try {
+            Preci = getArguments().getString("preci_1");
+            Hum = getArguments().getString("hum_1");
+            CC = getArguments().getString("CC_1");
+            System.out.println("here is fragment3< vlue: " + Preci + " " + Hum);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        p1 = Integer.parseInt(Preci);
+        h1 = Integer.parseInt(Hum);;
+        c1 = Integer.parseInt(CC);;
+
         HIChartView chartView = rootView.findViewById(R.id.hc);
 
         HIOptions options = new HIOptions();
@@ -172,7 +189,7 @@ public class ThirdFragment extends Fragment {
         data1.setColor(HIColor.initWithRGB(94, 163, 0));
         data1.setRadius("115%");
         data1.setInnerRadius("91%");
-        data1.setY(36);
+        data1.setY(c1);
         solidgauge1.setData(new ArrayList<>(Collections.singletonList(data1)));
 
         HISolidgauge solidgauge2 = new HISolidgauge();
@@ -181,7 +198,7 @@ public class ThirdFragment extends Fragment {
         data2.setColor(HIColor.initWithRGB(83, 172, 255));
         data2.setRadius("90%");
         data2.setInnerRadius("66%");
-        data2.setY(0);
+        data2.setY(p1);
         solidgauge2.setData(new ArrayList<>(Collections.singletonList(data2)));
 
         HISolidgauge solidgauge3 = new HISolidgauge();
@@ -190,7 +207,7 @@ public class ThirdFragment extends Fragment {
         data3.setColor(HIColor.initWithRGB(248, 125, 92));
         data3.setRadius("65%");
         data3.setInnerRadius("41%");
-        data3.setY(72);
+        data3.setY(h1);
         solidgauge3.setData(new ArrayList<>(Collections.singletonList(data3)));
 
         options.setSeries(new ArrayList<>(Arrays.asList(solidgauge1, solidgauge2, solidgauge3)));

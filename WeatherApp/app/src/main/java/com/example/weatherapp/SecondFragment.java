@@ -52,6 +52,10 @@ public class SecondFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    String minTemp, minTemp1, minTemp2, minTemp3, minTemp4, minTemp5, minTemp6;
+    String maxTemp, maxTemp1, maxTemp2, maxTemp3, maxTemp4, maxTemp5, maxTemp6;
+    int x1, x2, x3, x4, x5, x6, x7;
+    int y1, y2, y3, y4, y5, y6, y7;
     public SecondFragment() {
         // Required empty public constructor
     }
@@ -88,6 +92,45 @@ public class SecondFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_third, container, false);
+
+        try {
+            minTemp = getArguments().getString("minTemp");
+            minTemp1 = getArguments().getString("minTemp1");
+            minTemp2 = getArguments().getString("minTemp2");
+            minTemp3 = getArguments().getString("minTemp3");
+            minTemp4 = getArguments().getString("minTemp4");
+            minTemp5 = getArguments().getString("minTemp5");
+            minTemp6 = getArguments().getString("minTemp6");
+
+            maxTemp = getArguments().getString("maxTemp");
+            maxTemp1 = getArguments().getString("maxTemp1");
+            maxTemp2 = getArguments().getString("maxTemp2");
+            maxTemp3 = getArguments().getString("maxTemp3");
+            maxTemp4 = getArguments().getString("maxTemp4");
+            maxTemp5 = getArguments().getString("maxTemp5");
+            maxTemp6 = getArguments().getString("maxTemp6");
+
+            System.out.println("min value and max value is: " + minTemp + " " + maxTemp1);
+
+            x1 = Integer.parseInt(minTemp);
+            x2 = Integer.parseInt(minTemp1);
+            x3 = Integer.parseInt(minTemp2);
+            x4 = Integer.parseInt(minTemp3);
+            x5 = Integer.parseInt(minTemp4);
+            x6 = Integer.parseInt(minTemp5);
+            x7 = Integer.parseInt(minTemp6);
+
+            y1 = Integer.parseInt(maxTemp);
+            y2 = Integer.parseInt(maxTemp1);
+            y3 = Integer.parseInt(maxTemp2);
+            y4 = Integer.parseInt(maxTemp3);
+            y5 = Integer.parseInt(maxTemp4);
+            y6 = Integer.parseInt(maxTemp5);
+            y7 = Integer.parseInt(maxTemp6);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         HIChartView chartView = rootView.findViewById(R.id.hc);
 
@@ -139,18 +182,13 @@ public class SecondFragment extends Fragment {
 
         Object[][] seriesData = new Object[][]{
 
-                { 33.3, 41.1},
-                { 31.3, 40.2},
-                { 28.2, 39.7},
-                { 29.1, 38.3},
-                { 28.4, 39.3},
-                { 23.2, 35.5},
-                { 27.2, 34.7},
-                { 20.4, 32.2},
-                { 23.2, 35.5},
-                { 26.2, 33.7},
-                { 20.4, 32.2},
-
+                { x1, y1},
+                { x2, y2},
+                { x3, y3},
+                { x4, y4},
+                { x5, y5},
+                { x6, y6},
+                { x7, y7},
 
         };
         series.setData(new ArrayList<>(Arrays.asList(seriesData)));

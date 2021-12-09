@@ -27,7 +27,10 @@ public class Details extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager2 pager2;
     innerAdapter adapter;
+    String minTemp, minTemp1, minTemp2, minTemp3, minTemp4, minTemp5, minTemp6;
+    String maxTemp, maxTemp1, maxTemp2, maxTemp3, maxTemp4, maxTemp5, maxTemp6;
     String WS, WT, Pre, Preci, Temp, Hum, Vis, CC;
+    String preci_1, hum_1, CC_1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +47,30 @@ public class Details extends AppCompatActivity {
             Hum = HomeIntent.getExtras().getString("Hum");
             Vis = HomeIntent.getExtras().getString("Vis");
             CC = HomeIntent.getExtras().getString("CC");
+            minTemp = HomeIntent.getExtras().getString("minTemp");
+            minTemp1 = HomeIntent.getExtras().getString("minTemp1");
+            minTemp2 = HomeIntent.getExtras().getString("minTemp2");
+            minTemp3 = HomeIntent.getExtras().getString("minTemp3");
+            minTemp4 = HomeIntent.getExtras().getString("minTemp4");
+            minTemp5 = HomeIntent.getExtras().getString("minTemp5");
+            minTemp6 = HomeIntent.getExtras().getString("minTemp6");
+
+            maxTemp = HomeIntent.getExtras().getString("maxTemp");
+            maxTemp1 = HomeIntent.getExtras().getString("maxTemp1");
+            maxTemp2 = HomeIntent.getExtras().getString("maxTemp2");
+            maxTemp3 = HomeIntent.getExtras().getString("maxTemp3");
+            maxTemp4 = HomeIntent.getExtras().getString("maxTemp4");
+            maxTemp5 = HomeIntent.getExtras().getString("maxTemp5");
+            maxTemp6 = HomeIntent.getExtras().getString("maxTemp6");
+
+            preci_1 = HomeIntent.getExtras().getString("preci_1");
+            hum_1 = HomeIntent.getExtras().getString("hum_1");
+            CC_1 =  HomeIntent.getExtras().getString("CC_1");
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-//        System.out.println("xixixixi"+ WS + " " + WT);
+        System.out.println("xixixixi"+ maxTemp + " " + minTemp4);
 
 
 
@@ -148,9 +170,36 @@ public class Details extends AppCompatActivity {
                     fragobj.setArguments(bundle);
                     return fragobj;
                 case 1:
-                    return new SecondFragment();
+                    Bundle bundle2 = new Bundle();
+                    System.out.println("cases 1 in details: " + minTemp);
+                    bundle2.putString("minTemp", minTemp);
+                    bundle2.putString("minTemp1", minTemp1);
+                    bundle2.putString("minTemp2", minTemp2);
+                    bundle2.putString("minTemp3", minTemp3);
+                    bundle2.putString("minTemp4", minTemp4);
+                    bundle2.putString("minTemp5", minTemp5);
+                    bundle2.putString("minTemp6", minTemp6);
+
+                    bundle2.putString("maxTemp", maxTemp);
+                    bundle2.putString("maxTemp1", maxTemp1);
+                    bundle2.putString("maxTemp2", maxTemp2);
+                    bundle2.putString("maxTemp3", maxTemp3);
+                    bundle2.putString("maxTemp4", maxTemp4);
+                    bundle2.putString("maxTemp5", maxTemp5);
+                    bundle2.putString("maxTemp6", maxTemp6);
+
+                    SecondFragment fragobj2 = new SecondFragment();
+                    fragobj2.setArguments(bundle2);
+                    return fragobj2;
                 case 2:
-                    return new ThirdFragment();
+                    Bundle bundle3 = new Bundle();
+                    bundle3.putString("preci_1", preci_1);
+                    bundle3.putString("hum_1", hum_1);
+                    bundle3.putString("CC_1", CC_1);
+                    System.out.println("send value to frg3: "+ preci_1 + " " + hum_1 + " " + CC_1);
+                    ThirdFragment fragobj3 = new ThirdFragment();
+                    fragobj3.setArguments(bundle3);
+                    return fragobj3;
                 default:
                     return null;
             }

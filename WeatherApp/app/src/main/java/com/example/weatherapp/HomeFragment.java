@@ -154,29 +154,6 @@ public class HomeFragment extends Fragment {
                                                 visibilityData.setText(values.getString("visibility") + "mi");
                                                 pressureData.setText(values.getString("pressureSurfaceLevel") + "inHg");
 
-                                                WT = getWeatherInfo(values.getString("weatherCode"));
-                                                WS = values.getString("windSpeed") + "mph";
-                                                Pre = values.getString("pressureSurfaceLevel") + "inHg";
-                                                Preci = values.getString("precipitationProbability") + "%";
-                                                Temp = Integer.toString((int) Math.round(values.getDouble("temperature"))) + " \u2109";
-                                                Hum = values.getString("humidity") + "%";
-                                                Vis = values.getString("visibility") + "mi";
-                                                CC = values.getString("cloudCover") + "%";
-                                                CardView card1 = rootView.findViewById(R.id.card1);
-                                                card1.setOnClickListener(new View.OnClickListener() {
-                                                    public void onClick(View v) {
-                                                        Intent intent = new Intent(getActivity(), Details.class);
-                                                        intent.putExtra("WS", WS);
-                                                        intent.putExtra("WT", WT);
-                                                        intent.putExtra("Pre", Pre);
-                                                        intent.putExtra("Preci", Preci);
-                                                        intent.putExtra("Temp", Temp);
-                                                        intent.putExtra("Hum", Hum);
-                                                        intent.putExtra("Vis", Vis);
-                                                        intent.putExtra("CC", CC);
-                                                        startActivity(intent);
-                                                    }
-                                                });
 
                                                 JSONObject day1 = (JSONObject) intervals.get(1);
                                                 JSONObject values1 = day1.getJSONObject("values");
@@ -244,6 +221,68 @@ public class HomeFragment extends Fragment {
                                                 minTemperature6.setText(Integer.toString((int) Math.round(values6.getDouble("temperatureMin"))));
                                                 maxTemperature6.setText(Integer.toString((int) Math.round(values6.getDouble("temperatureMax"))));
 
+                                                WT = getWeatherInfo(values.getString("weatherCode"));
+                                                WS = values.getString("windSpeed") + "mph";
+                                                Pre = values.getString("pressureSurfaceLevel") + "inHg";
+                                                Preci = values.getString("precipitationProbability") + "%";
+                                                Temp = Integer.toString((int) Math.round(values.getDouble("temperature"))) + " \u2109";
+                                                Hum = values.getString("humidity") + "%";
+                                                Vis = values.getString("visibility") + "mi";
+                                                CC = values.getString("cloudCover") + "%";
+                                                String preci_1 = values.getString("precipitationProbability");
+                                                String hum_1 = values.getString("humidity");
+                                                String CC_1 = values.getString("cloudCover");
+
+                                                String MinTemp = Integer.toString((int) Math.round(values.getDouble("temperatureMin")));
+                                                String MinTemp1 = Integer.toString((int) Math.round(values1.getDouble("temperatureMin")));
+                                                String MinTemp2= Integer.toString((int) Math.round(values2.getDouble("temperatureMin")));
+                                                String MinTemp3= Integer.toString((int) Math.round(values3.getDouble("temperatureMin")));
+                                                String MinTemp4= Integer.toString((int) Math.round(values4.getDouble("temperatureMin")));
+                                                String MinTemp5= Integer.toString((int) Math.round(values5.getDouble("temperatureMin")));
+                                                String MinTemp6= Integer.toString((int) Math.round(values6.getDouble("temperatureMin")));
+
+                                                String MaxTemp = Integer.toString((int) Math.round(values.getDouble("temperatureMax")));
+                                                String MaxTemp1 = Integer.toString((int) Math.round(values1.getDouble("temperatureMax")));
+                                                String MaxTemp2 = Integer.toString((int) Math.round(values2.getDouble("temperatureMax")));
+                                                String MaxTemp3 = Integer.toString((int) Math.round(values3.getDouble("temperatureMax")));
+                                                String MaxTemp4 = Integer.toString((int) Math.round(values4.getDouble("temperatureMax")));
+                                                String MaxTemp5 = Integer.toString((int) Math.round(values5.getDouble("temperatureMax")));
+                                                String MaxTemp6 = Integer.toString((int) Math.round(values6.getDouble("temperatureMax")));
+                                                CardView card1 = rootView.findViewById(R.id.card1);
+                                                card1.setOnClickListener(new View.OnClickListener() {
+                                                    public void onClick(View v) {
+                                                        System.out.println("original temo info: " + MinTemp + " " + MaxTemp1);
+                                                        Intent intent = new Intent(getActivity(), Details.class);
+                                                        intent.putExtra("WS", WS);
+                                                        intent.putExtra("WT", WT);
+                                                        intent.putExtra("Pre", Pre);
+                                                        intent.putExtra("Preci", Preci);
+                                                        intent.putExtra("Temp", Temp);
+                                                        intent.putExtra("Hum", Hum);
+                                                        intent.putExtra("Vis", Vis);
+                                                        intent.putExtra("CC", CC);
+                                                        intent.putExtra("minTemp", MinTemp);
+                                                        intent.putExtra("minTemp1", MinTemp1);
+                                                        intent.putExtra("minTemp2", MinTemp2);
+                                                        intent.putExtra("minTemp3", MinTemp3);
+                                                        intent.putExtra("minTemp4", MinTemp4);
+                                                        intent.putExtra("minTemp5", MinTemp5);
+                                                        intent.putExtra("minTemp6", MinTemp6);
+
+                                                        intent.putExtra("maxTemp", MaxTemp);
+                                                        intent.putExtra("maxTemp1", MaxTemp1);
+                                                        intent.putExtra("maxTemp2", MaxTemp2);
+                                                        intent.putExtra("maxTemp3", MaxTemp3);
+                                                        intent.putExtra("maxTemp4", MaxTemp4);
+                                                        intent.putExtra("maxTemp5", MaxTemp5);
+                                                        intent.putExtra("maxTemp6", MaxTemp6);
+
+                                                        intent.putExtra("preci_1", preci_1);
+                                                        intent.putExtra("hum_1", hum_1);
+                                                        intent.putExtra("CC_1", CC_1);
+                                                        startActivity(intent);
+                                                    }
+                                                });
 
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
