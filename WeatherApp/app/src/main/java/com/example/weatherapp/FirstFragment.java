@@ -116,23 +116,22 @@ public class FirstFragment extends Fragment {
 
             Temp = getArguments().getString("Temp");
             TextView temperature = rootView.findViewById(R.id.temp);
-            temperature.setText(Preci);
+            temperature.setText(Temp);
 
 
             Hum = getArguments().getString("Hum");
             TextView humidity = rootView.findViewById(R.id.hum);
-            humidity.setText(Preci);
-
+            humidity.setText(Hum);
 
             Vis = getArguments().getString("Vis");
             TextView visibile = rootView.findViewById(R.id.vis);
-            visibile.setText(Preci);
+            visibile.setText(Vis);
 
             CC = getArguments().getString("CC");
             TextView cloudCover = rootView.findViewById(R.id.cc);
             cloudCover.setText(CC);
 
-            System.out.println("this is another fav fragment, and value is: " + WS);
+            System.out.println("this is another fav fragment, and value is: " + WS + " " + Preci + " " + Temp + " " + Hum + " " + Vis + " " + CC);
 
         } catch (Exception e) {
             e.printStackTrace();
